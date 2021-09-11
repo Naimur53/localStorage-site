@@ -36,7 +36,12 @@ const getCart = () => {
 // adding item to localStorage
 const addItemtToCart = name => {
     const cart = getCart();
-    cart[name] = 1;
+    if (cart[name]) {
+        cart[name] += 1;
+    }
+    else {
+        cart[name] = 1;
+    }
     console.log(cart);
     const cartSring = JSON.stringify(cart);
     localStorage.setItem('cart', cartSring);
@@ -51,3 +56,9 @@ const loadCart = () => {
 }
 
 loadCart();
+
+//placeOrder
+const placeOrder = () => {
+    itemWrapper.textContent = '';
+    localStorage.removeItem('cart');
+}
